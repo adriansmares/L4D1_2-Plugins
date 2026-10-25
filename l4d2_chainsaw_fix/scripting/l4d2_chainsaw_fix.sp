@@ -173,7 +173,7 @@ void OnWeaponEquipPost(int client, int weapon)
 	//if(GetEntData(weapon, s_iOffs_m_pChainsawOwner))
 	//	return;
 	
-	SetEntData(weapon, s_iOffs_m_pChainsawOwner, GetEntityAddress(client), 4);
+	SetEntData(weapon, s_iOffs_m_pChainsawOwner, view_as<int>(GetEntityAddress(client)), 4);
 }
 
 bool IsValidEntityIndex(int entity)
