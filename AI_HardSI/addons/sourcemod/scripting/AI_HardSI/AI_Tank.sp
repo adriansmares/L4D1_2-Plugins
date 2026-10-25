@@ -18,9 +18,9 @@ methodmap PlayerBody
 {
 	property CountdownTimer m_lookAtExpireTimer {
 		public get() {
-			return view_as<CountdownTimer>(
-				view_as<Address>(this) + view_as<Address>(100)
-			);
+			return view_as<CountdownTimer>(view_as<int>(
+				view_as<Address>(view_as<int>(this)) + view_as<Address>(100)
+			));
 		}
 	}
 }
@@ -332,9 +332,9 @@ CountdownTimer CThrow__GetThrowTimer(int ability)
 	if (s_iOffs_m_throwTimer == -1)
 		s_iOffs_m_throwTimer = FindSendPropInfo("CThrow", "m_hasBeenUsed") + 4;
 	
-	return view_as<CountdownTimer>(
+	return view_as<CountdownTimer>(view_as<int>(
 		GetEntityAddress(ability) + view_as<Address>(s_iOffs_m_throwTimer)
-	);
+	));
 }
 
 stock void Client_Push(int client, float clientEyeAngle[3], float power, int override[3]) {

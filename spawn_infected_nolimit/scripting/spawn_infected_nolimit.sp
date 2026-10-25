@@ -662,9 +662,9 @@ void LoadStringFromAdddress(Address addr, char[] buffer, int maxlength) {
 }
 
 Handle PrepCreateBotCallFromAddress(Handle hSiFuncTrie, const char[] siName) {
-	Address addr;
+	int addr;
 	StartPrepSDKCall(SDKCall_Static);
-	if (!GetTrieValue(hSiFuncTrie, siName, addr) || !PrepSDKCall_SetAddress(addr))
+	if (!GetTrieValue(hSiFuncTrie, siName, addr) || !PrepSDKCall_SetAddress(view_as<Address>(addr)))
 	{
 		SetFailState("Unable to find NextBotCreatePlayer<%s> address in memory.", siName);
 		return null;
@@ -696,7 +696,7 @@ void PrepWindowsCreateBotCalls(Address jumpTableAddr) {
 		Address callOffsetBase = caseBase + view_as<Address>(10); // first byte of next instruction after the CALL instruction
 		Address nextBotCreatePlayerBotTAddr = callOffsetBase + view_as<Address>(funcRelOffset);
 		//PrintToServer("Found NextBotCreatePlayerBot<%s>() @ %08x", siName, nextBotCreatePlayerBotTAddr);
-		SetTrieValue(hInfectedFuncs, siName, nextBotCreatePlayerBotTAddr);
+		SetTrieValue(hInfectedFuncs, siName, view_as<int>(nextBotCreatePlayerBotTAddr));
 	}
 
 	hCreateSmoker = PrepCreateBotCallFromAddress(hInfectedFuncs, "Smoker");
