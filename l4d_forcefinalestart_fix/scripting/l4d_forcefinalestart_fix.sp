@@ -303,7 +303,7 @@ void SetAllNavAreasFinale()
         int navSpawnAttributes = L4D_GetNavArea_SpawnAttributes(area);
         if (!(navSpawnAttributes & NAV_FINALE))
         {
-            alNavAreasWithoutFinale.Push(area);
+            alNavAreasWithoutFinale.Push(view_as<int>(area));
             L4D_SetNavArea_SpawnAttributes(area, navSpawnAttributes|NAV_FINALE);
         }
     }
@@ -318,7 +318,7 @@ void RestoreNavAreas()
 
     for (int i = 0; i < alNavAreasWithoutFinale.Length; i++)
     {
-        Address area = alNavAreasWithoutFinale.Get(i);
+        Address area = view_as<Address>(view_as<int>(alNavAreasWithoutFinale.Get(i)));
         int navSpawnAttributes = L4D_GetNavArea_SpawnAttributes(area);
         navSpawnAttributes &= ~NAV_FINALE;
         L4D_SetNavArea_SpawnAttributes(area, navSpawnAttributes);
