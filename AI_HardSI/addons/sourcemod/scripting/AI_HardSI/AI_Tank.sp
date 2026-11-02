@@ -415,7 +415,7 @@ stock int GetClosestSur(int client, int ent, float range, int exclude = -1) {
 
 	al_targets.Sort(Sort_Ascending, Sort_Float);
 	index = al_targets.FindValue(0, 2);
-	i = al_targets.Get(index != -1 && al_targets.Get(index, 0) < g_fTankThrowForce ? index : Math_GetRandomInt(0, RoundToCeil((al_targets.Length - 1) * 0.8)), 1);
+	i = al_targets.Get(index != -1 && view_as<float>(al_targets.Get(index, 0)) < g_fTankThrowForce ? index : Math_GetRandomInt(0, RoundToCeil((al_targets.Length - 1) * 0.8)), 1);
 	delete al_targets;
 	return i;
 }
