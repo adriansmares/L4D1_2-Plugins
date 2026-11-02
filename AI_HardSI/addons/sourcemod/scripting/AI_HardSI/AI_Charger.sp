@@ -418,7 +418,7 @@ static int GetClosestSur(int client, float range, int exclude = -1) {
 
 	al_targets.Sort(Sort_Ascending, Sort_Float);
 	index = al_targets.FindValue(0, 2);
-	i = al_targets.Get(index != -1 && al_targets.Get(index, 0) < 0.5 * range ? index : 0, 1);
+	i = al_targets.Get(index != -1 && view_as<float>(al_targets.Get(index, 0)) < 0.5 * range ? index : 0, 1);
 	delete al_targets;
 	return i;
 }
